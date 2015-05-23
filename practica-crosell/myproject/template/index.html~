@@ -5,6 +5,7 @@
 <title>Actividades en Madrid</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 <link href="/css/default.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 body {margin:0;
@@ -219,13 +220,13 @@ body {margin:0;
                                     <form action="" method="POST"> 
                                         <table>
                                             <tr><td>Letra</td>
-                                                <td>{{form_us.tamanoletra}}</td></tr>
+                                                <td>{{form_us.TamanoLetra}}</td></tr>
                                             <tr><td>Color</td>
-                                                <td>{{form_us.colorletra}}</td></tr>
+                                                <td>{{form_us.ColorLetra}}</td></tr>
                                             <tr><td>Fondo</td>
-                                                <td>{{form_us.colorfondo}}</td></tr>
+                                                <td>{{form_us.ColorFondo}}</td></tr>
                                             <tr><td>Banner</td>
-                                                <td>{{form_us.imagenbanner}}</td></tr>
+                                                <td>{{form_us.ImagenBanner}}</td></tr>
                                         </table>
                                     
                                     <input type="submit" value="Mostrar"></form></br>
