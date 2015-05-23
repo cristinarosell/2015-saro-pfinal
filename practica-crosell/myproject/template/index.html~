@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Actividades en Madrid</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="/css/default.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body {margin:0;
+     background: {{colorfondo}} url(/css/images/img01.jpg) repeat-x left top;
+     text-align:justify;
+     font-family:Arial,Helvetica,sans-serif;
+     font-size: {{tamanoletra}};
+     color: {{colorletra}}}
+</style>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1>Eventos de ocio y cultura</h1>
+			<h2><a>en Madrid</a></h2>
+		</div>
+	</div>
+	<div id="menu">
+		<ul>
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="/todas">Todas</a></li>
+			<li><a href="/ayuda">Ayuda</a></li>
+			<!--Inicio no se mostrara si esta en inicio-->
+			{% if not estoyeninicio %}
+			    <li><a href="/">Inicio</a></li>
+		    {% endif %}
+		    {% if autenticado %}
+		    <li><a href="/{{nombre}}">Personal</a></li>
+		    {% endif %}
+		</ul>
+	</div>
+	<div id="splash"><img src="/css/images/{{banner}}" width="940" height="255" alt="" /></div>
+	<div id="page"><div class="inner_copy"></div>
+		<div id="page-bgtop">
+			<div id="content">
+				<div class="post">
+					<h2 class="title"><a href="#">{{info}}</a></h2>
+					<p class="byline"></p>
+					<div class="entry" >
+					<p>					 
+					    
+                        {% if titulo %}
+                        <ul>
+                            <li> TITULO: {{titulo}}
+                        </ul>
+                        <ul>
+                            <li> ID: {{id}} </li>
+                            <li> FECHA: {{fecha}} </li>
+                            <li> DURACION: {{duracion}} </li>
+                            <li> PRECIO: {{precio}} </li>
+                            <li> TIPO: {{tipo}} </li>
+                            <li> {{largadur}} </li>
+                            <li>  URL:<a href='{{url}}'>{{url}}</a></br></li>
+                            </li>
+                        </ul>
+                        
+                        {% endif %}
+                        <!--PAGINA AYUDA-->
+                        
+                        <p>{{p1}}</p>
+                        <p>{{p2}}</p>
+                        <p>{{p3}}</p>
+                        <p>{{p4}}</p>
+                        <p>{{p5}}</p>
+                        <p>{{p6}}</p>
+                        <p>{{p7}}</p>
+                        <p>{{p8}}</p>
+                        
+                        
+                        
+                        
+                        <!--PAGINA PRINCIPAL-->
+                        <!--Diez actividades mas proximas-->
+                        
+					    {% if lista_ev %}
+                           <ul>
+                            {% for i in lista_ev %}
+                            </br>
+                            <li>TITULO: {{i.titulo}}</br></li>
+                            <li>ID: {{i.id}}</br></li>
+                            <li>TIPO: {{i.tipo}}</br></li>
+                            <li>PRECIO: {{i.comentprecio}}</br></li>
+                            <li>FECHA: {{i.fechahora}}</br></li>
+                            <li>DURACION: {{i.duracion}}</br></li>
+                            {%if i.largaduracion %}
+                                <li>EVENTO DE LARGA DURACION</br></li>
+                            {% else %}
+                                <li>EVENTO DE CORTA DURACION</br></li>
+                            {% endif %}   
+                            <li>URL:<a href='{{i.url}}'>{{i.url}}</a></br></li>
+                            <li>DESCRIPCION: {{i.descripcion}}</br></li>
+                            </br>
+                            <hr style="color: #CCC;" noshade="noshade" size="1"  />
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                        
+                        <!--Listado de paginas personales dentro de pagina principal-->
+                        
+					    {% if lista_us %}
+					        <h2 class="title">PAGINAS PERSONALES</h2>
+                           <ul>
+                            {% for i in lista_us %}
+                            <li>NOMBRE: {{i.nombre}}</br></li>  
+                            <li>URL:<a href='{{i.nombre}}'>{{i.npag}}</a></br></li>
+                            <li>DESCRIPCION: {{i.descrpag}}</br></li>
+                            </br>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                        
+                        <!--PAGINA ACTIVIDAD-->
+                        
+					    {% if fila_act %}
+                           <ul>
+                       
+                            <li>TITULO: {{fila_act.titulo}}</br></li>
+                            <li>TIPO: {{fila_act.tipo}}</br></li>
+                            <li>PRECIO: {{fila_act.comentprecio}}</br></li>
+                            <li>FECHA: {{fila_act.fechahora}}</br></li>
+                            <li>DURACION: {{fila_act.duracion}}</br></li>
+                            {%if fila_act.largaduracion %}
+                                <li>EVENTO DE LARGA DURACION</br></li>
+                            {% else %}
+                                <li>EVENTO DE CORTA DURACION</br></li>
+                            {% endif %}   
+                            <li>URL:<a href='{{fila_act.url}}'>{{fila_act.url}}</a></br></li>
+                            <li>DESCRIPCION: {{fila_act.descripcion}}</br></li>
+                            <li>VOTOS: {{votos}}</br></li>
+                            </br>
+                          
+                            </ul>
+                        {% endif %}
+                        
+                        <!--Formulario para poner un comentario en la pag de la actividad-->
+                        {% if autenticado%}
+                            {% if form_coment%}
+                                <form action="" method="POST"> {{form_coment}} <input type="submit" value="Enviar"></form></br>
+                            {% endif %}                      
+                      
+                        {% endif %}  
+                        
+                        <!--PAGINA TODAS-->
+                        <!--Formularios para filtrar en pag todas-->
+                        
+                        {% if form_ord%}
+                            <form action="" method="POST"> {{form_ord}} <input type="submit" value="Mostrar"></form></br>
+                            <form action="" method="POST"> {{form_tipos}} <input type="submit" value="Mostrar"></form></br>
+                            <form action="" method="POST"> {{form_dur}} <input type="submit" value="Mostrar"></form></br>
+                        {% endif %}                      
+                      
+                      <!--Info privada en pagina todas-->
+                      
+                        {% if autenticado_all %}
+                            <!-- <a href='/actualizar'>Recargar</a></br></br> -->
+                            <button onclick="location.href='/actualizar'">Recargar</button></br></br>
+                            ULTIMA ACTUALIZACION : {{ult_act}} </br></br>
+                            NUMERO DE ACTIVIDADES : {{n_act}} </br></br>
+                        
+                        {% endif %}
+                        
+                        <!--listado de todos los eventos en pag todas-->
+                      
+  					    {% if lista_all %}
+                           <ul>
+                            {% for i in lista_all %}
+                                </br>
+                                <li>TITULO: {{i.titulo}}</br></li>
+                                <li>ID: {{i.id}}</br></li>
+                                <li>TIPO: {{i.tipo}}</br></li>
+                                <li>PRECIO: {{i.comentprecio}}</br></li>
+                                <li>FECHA: {{i.fechahora}}</br></li>
+                                <li>DURACION: {{i.duracion}}</br></li>
+                                {%if i.largaduracion %}
+                                    <li>EVENTO DE LARGA DURACION</br></li>
+                                {% else %}
+                                    <li>EVENTO DE CORTA DURACION</br></li>
+                                {% endif %}   
+                                <li>URL:<a href='{{i.url}}'>{{i.url}}</a></br></li>
+                                <li>DESCRIPCION: {{i.descripcion}}</br></li>
+                                <!-- <li>VOTAR: <a class= "btn" href='/votar/{{i.id}}'>+1</a> </br></li> -->
+                                <li>VOTAR: <button onclick="location.href='/votar/{{i.id}}'">+1</button>
+
+ </br></li>
+                                {% if autenticado_all %}
+                                    <!-- <li><a href='/elegiract/{{i.id}}'>Seleccionar</a></br></li> -->
+                                    <button onclick="location.href='/elegiract/{{i.id}}'">Seleccionar</button></br>
+                                {% endif %}
+                                </br>
+                                <hr style="color: #CCC;" noshade="noshade" size="1" />
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                        
+                        <!--PAGINA DE USUARIO-->
+                        <!--formularios para la pagina de usuario-->
+                        {% if lista_user %}
+                            <div class="meta">
+                            {% ifnotequal descr_user "vacio" %}
+                                Descripcion: {{descr_user}}
+                            {%endifnotequal%}
+                                
+                            </div>
+                        {%endif%}
+                        
+                        {% if autenticado_us %}
+                            {% if nombre == userrss %}
+                                {% if form_tit%}
+                                    <form action="" method="POST"> {{form_tit}} <input type="submit" value="Mostrar"></form></br>
+                                    <form action="" method="POST"> {{form_des}} <input type="submit" value="Mostrar"></form></br>
+                                    <form action="" method="POST"> 
+                                        <table>
+                                            <tr><td>Letra</td>
+                                                <td>{{form_us.tamanoletra}}</td></tr>
+                                            <tr><td>Color</td>
+                                                <td>{{form_us.colorletra}}</td></tr>
+                                            <tr><td>Fondo</td>
+                                                <td>{{form_us.colorfondo}}</td></tr>
+                                            <tr><td>Banner</td>
+                                                <td>{{form_us.imagenbanner}}</td></tr>
+                                        </table>
+                                    
+                                    <input type="submit" value="Mostrar"></form></br>
+ 
+                                    
+                                    
+                                {% endif %}   
+                            {% endif %}  
+                        
+                        {% endif %}
+                        
+                        
+  					    {% if lista_user %}
+                           <ul>
+                            {% for i in lista_user %}
+                                </br>
+                                <li>TITULO: {{i.evento.titulo}}</br></li>
+                                <li>ID: {{i.evento.id}}</br></li>
+                                <li>TIPO: {{i.evento.tipo}}</br></li>
+                                <li>PRECIO: {{i.evento.comentprecio}}</br></li>
+                                <li>FECHA: {{i.evento.fechahora}}</br></li>
+                                <li>DURACION: {{i.evento.duracion}}</br></li>
+                                {%if i.evento.largaduracion %}
+                                    <li>EVENTO DE LARGA DURACION</br></li>
+                                {% else %}
+                                    <li>EVENTO DE CORTA DURACION</br></li>
+                                {% endif %}   
+                                <li>URL:<a href='{{i.evento.url}}'>{{i.evento.url}}</a></br></li>
+                                <li>DESCRIPCION: {{i.evento.descripcion}}</br></li>
+                                <!-- <li><a href='/actividad/{{i.evento.id}}'>Ver pagina</a></br></li> -->
+                                {% if autenticado_us %}
+                                    <li>ACTIVIDAD SELECCIONADA EN: {{i.fechareg}}</li>
+                                    <a href='/eliminar/{{i.evento.id}}'>Eliminar actividad</a></br>
+                                {% endif %}
+                                <button onclick="location.href='/actividad/{{i.evento.id}}'">Ver pagina</button>
+                                </br>
+                                <hr style="color: #CCC;" noshade="noshade" size="1" />
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                        
+                        <!--ver personas a las que sigue en pag de usuario-->
+                        {% if lista_seg %}
+                           <ul>
+                           </br>
+                           <h2 class="title">SIGUIENDO A:</h2>
+                            {% for i in lista_seg %}
+                                <li><a href='/{{i.usuarioseguido.nombre}}'>{{i.usuarioseguido.nombre}}</a></li>
+                                {%if autenticado%}
+                                    {% if nombre == userrss %}
+                                        <button onclick="location.href='/dejardeseguir/{{i.usuarioseguido.nombre}}'">Dejar de seguir</button>
+                                     {%endif%}   
+                                {%endif%}
+                                </br>
+                            {% endfor %}
+                            </ul>
+                            <hr style="color: #CCC;" noshade="noshade" size="1" />
+                            
+					    {% endif %}
+                        
+                        
+                        <!--VER COMENTARIOS-->
+                        <div class="meta">
+                        {% if listacom %}
+                           <ul>
+                           </br>
+                           <h2 class="title">COMENTARIOS</h2>
+                            {% for i in listacom %}
+                                Comentario sobre la actividad: 
+                                <a href='/actividad/{{i.evento.id}}'>{{i.evento.titulo}}</a></br>
+                                {{i.usuario.nombre}}:  {{i.texto}}</br></li>
+                                Realizado el dia: {{i.fechacom}}
+                                </br></br>
+                            {% endfor %}
+                            </ul>
+                            
+					    {% endif %}
+					    </div>
+                        
+                        <!--RANKING DE EVENTOS-->
+                        
+                        {% if lista_rank %}
+                           <ol>
+                            {% for i in lista_rank %}
+                                <li>{{i.evento.titulo}} -- {{i.puntuacion}} Votos</li>
+                                </br>
+                            {% endfor %}
+                            </ol>
+                            
+					    {% endif %}
+					    
+					    
+					    <!--LISTA DE USUARIOS REGISTRADOS-->
+					    
+                        {% if lista_us_reg %}
+                           <ul>
+                            {% for i in lista_us_reg %}
+                                {%ifnotequal i.nombre nombre%}
+                                    <li>{{i.nombre}} -- {{i.npag}}
+                                    {%if autenticado%}
+                                        <!-- <a href='/seguir/{{i.nombre}}'>SEGUIR</a></br> -->
+                                        <button onclick="location.href='/seguir/{{i.nombre}}'">Seguir</button>
+                                    {%endif%}
+                                    </li>
+                                {%endifnotequal%}
+                                </br>
+                            {% endfor %}
+                            </ul>
+                            
+					    {% endif %}
+					    
+                        
+                        
+                        
+					    {% if salida %}
+                           <ul>
+                            {% for i in salida %}
+                            <li>{{i}}</br></li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                        
+                    
+					
+					</font>
+					</p>
+					</div>
+					<div class="meta">
+					    {% if comentario %}
+					    </br>
+					        <h2 class="title">COMENTARIOS</h2>
+					    
+                           <ul>
+                            {% for i in comentario %}
+                                <a href='/{{i.usuario.nombre}}'>{{i.usuario.nombre}}</a>: 
+                                {{i.texto}} {{i.fechacom}}</br></li>
+                            {% endfor %}
+                            </ul>
+                        
+					<p class="links"><a href="#" class="comments">Comentarios({{numcoment}})</a></p>
+					
+					    {% endif %}
+					</div>
+				</div>
+
+
+					<div class="meta">
+					
+					</div>
+				</div>
+			</div>
+			<div id="sidebar">
+				<ul>
+					<div id="search">
+					
+					
+						<h2>Login/Logout</h2>
+						
+						
+						
+                        {% if autenticado %}
+                            Estas autenticado, eres {{nombre}}
+                            </br></br>
+                            Quieres salir?
+                            </br></br>
+                            <div class="meta">
+                            <!-- <a href='/logout'><b><u>Logout</u></b></a></br> -->
+                            <button onclick="location.href='/logout'">Logout</button>
+                            
+                            </div>
+                            </br></br>
+                        {% else %}
+                            {% if form_log%}
+                            
+                                <form action="/login" method="POST">
+                                <table>
+                                    <tr><td>Nombre</td>
+                                        <td>{{form_log.username}}</td></tr>
+                                    <tr><td>Contrasena</td>
+                                        <td>{{form_log.password}}</td></tr>
+                                </table>
+                                <input type="submit" value="Entrar"></form></br>
+                                
+                            {% endif %} 
+                        
+                        {% endif %}
+                        
+
+					</div>
+					</br></br>
+					<h2 >Menu</h2>
+					<li>
+					
+						<ul>
+					        <li><a href="/ranking">Ver Ranking de Actividades</a></li>
+					        <li><a href="/listausuarios">Ver Usuarios Registrados</a></li>
+						    {% if userrss %}
+							    <li><a href="{{userrss}}/rss">Canal RSS de {{userrss}}</a></li>
+						    {%endif%}
+						    {%if todasrss%}
+							    <li><a href="todas/rss">Canal RSS de todas</a></li>
+						    {%endif%}
+						    {%if prinrss%}
+							    <li><a href="principal/rss">Canal RSS actividades proximas</a></li>
+						    {%endif%}
+						    {%if autorcom%}
+							    <li><a href="comentarios/{{autorcom}}">Ver los comentarios de {{autorcom}}</a></li>
+							{%endif%}
+							<li><a href="http://www.madrid.es">Pagina del Ayuntamiento de Madrid</a></li>
+							<li><a href="http://urjc.es">Pagina de la Universidad</a></li>
+							<li><a href="https://github.com/cristinarosell">Pagina Cristina Rosell</a></li>
+						</ul>
+					</li>
+
+
+				</ul>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	<div id="footer"><div class="fleft"><p>Copyright statement.</p></div><div class="fright"><p>Cristina Rosell Alvarez</p></div><div class="fcenter"><p>&copy; your site 2015 | design by <a href="https://github.com/cristinarosell">crosell</a></a></p></div><div class="fclear"></div></div>
+</div>
+</body>
+</html>

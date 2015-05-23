@@ -1,0 +1,271 @@
+/*
+This CSS document was written by Caleb Pierce (ridgehkr.com)
+This template is free for you to use and modify, etc. However, please insert a link on your site to 
+ridgehkr.com for design credits. thank you!
+*/
+
+*{
+	margin:0px;
+	padding:0px;
+}
+
+body{
+	background:rgb(180,180,180) url(../images/bodybg.png) repeat-x center top;
+	font-family:Verdana,'Times New Roman',Times,serif;
+	font-size:11px;
+	color:#222;
+	line-height:18px;
+}
+
+a  {
+	color:#394132;
+	text-decoration:none;	
+}
+
+
+h1,h2,h3{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	padding:5px 0px 5px 0px;
+}
+
+#mc_container h2
+       {
+       text-align:right;
+       font-weight:lighter;
+       color:#933B39;
+	   margin-bottom:10px;
+       border-bottom:1px solid #8d8d8d;
+	   font-size:3em;
+	   padding-bottom:8px;
+	   font-family:Georgia, serif;
+       }
+h1{
+	padding-top:0px;
+	font-size:25px;
+	font-family:"Trebuchet MS", Georgia, "Times New Roman", Times, serif;
+	font-weight:lighter;
+	color:#8F8F8F;
+	border-bottom:1px solid #EDEDED;
+	text-align:right;
+}
+
+h2{
+	font-size:20px;
+}
+
+h3{
+	color:#373E51;
+	font-size:1.2em;
+	font-weight:lighter;
+}
+
+#nav_container h3{
+	font-size:1.6em;
+	font-family:Georgia,'Trebuchet MS', serif;
+	font-weight:lighter;
+	letter-spacing:.3em;
+	margin-top:51px;
+	padding-top:5px;
+	color:#222;
+}
+
+li span {
+        color:#8d8d8d;
+}
+
+p{
+	padding-top:8px;
+	padding-bottom:8px;
+}
+hr{
+	border:0;
+	background-color:#9D9DA1;
+	height:1px;
+	width:95%;
+	margin:0px auto;
+	text-align:center;
+}
+img{
+	border:none;
+}
+
+/*pre-set image classes*/
+.right
+	{
+	float:right;
+	padding:5px;
+	background-color:#e8e8e8;
+	border:1px solid #8d8d8d;
+	margin:10px 0px 10px 10px;
+	}
+	
+.right-off
+	{
+	float:right;
+	}
+	
+.left
+	{
+	float:left;
+	padding:5px;
+	background-color:#e8e8e8;
+	border:1px solid #8d8d8d;
+	margin:10px 10px 10px 0px;
+	}
+	
+.left-off
+	{
+	float:left;
+	}
+
+blockquote
+	{
+	width:400px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#f5f5f5;
+	color:#222;
+	border-top:1px dashed #394132;
+	border-bottom:1px dashed #394132;
+	padding:10px;
+	margin-top:10px;
+	margin-bottom:10px;
+	}
+	
+blockquote a
+	{
+	text-decoration:underline;
+	}
+	
+blockquote span
+	{
+	color:#933B39;
+	font-size:1.2em;
+	letter-spacing:.2em;
+	}
+	
+#container{
+	margin-left:auto;
+	margin-right:auto;
+	width:768px;
+	border-right:6px solid #222;
+}
+* html #container{
+	padding-left:2px;
+}
+#c_container{
+	background:#FFFFFF url(../images/cbg.png) repeat-y;
+	margin-top:-5px;
+	width:770px;
+}
+
+#close
+	{
+    text-align:right;
+	padding:10px;
+	color:#8d8d8d;
+    } 
+	
+#close a
+	{
+	color:#222;
+	text-decoration:underline;
+	}
+	
+#header
+	{
+	width:770px;
+	height:100px;
+	background-color:#373737;
+	}
+	
+#header_text
+	{
+	width:300px;
+	color:#fff;
+	font-size:2em;
+	font-family:Georgia,Arial,'Trebuchet MS', serif;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:40px;
+	}
+	
+#header_text span
+	{
+	color:red;
+	letter-spacing:1em;
+	}
+/**** Main Content ****/
+#mc_container{
+	padding:20px 26px 20px 0px;
+	width:550px;
+	text-align:justify;
+	/*
+	background-image:url(../images/mcbg.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+	*/
+}
+#mc_container ul{
+	padding:3px 0px 3px 10px;
+}
+#mc_container ul li{
+	list-style-type:none;
+	background-repeat:no-repeat;
+	background-position:center left;
+}
+
+#location
+	{
+	margin-top:-10px;
+	margin-bottom:10px;
+	margin-left:0px;
+	color:#8d8d8d;
+	width:100%;
+	text-align:right;
+	}
+
+#location a
+	{
+	color:#222;
+	text-decoration:none;
+	}
+
+/**** Nav ****/
+#nav_container{
+    background-color:white;
+	width:180px;
+	padding:10px 17px 0px 17px;
+}
+#nav_container ul{
+	margin-top:8px;
+	padding-bottom:12px;
+}
+#nav_container ul li{
+	list-style-type:none;
+	padding:10px 0px 5px 5px;
+	border-bottom:1px solid #EDEDED;
+	background-color:#4F6577;
+}
+
+#nav_container ul li.indent{
+	padding-left:30px;
+}
+#nav_container ul li a{
+	color:white;
+    font-weight:bold;
+}
+#nav_container ul li a:hover{
+	/*color:#007FBD;*/
+	text-decoration:none;
+}
+#nav_container ul li a.current{
+	font-weight:bold;
+}
+
+#footer
+	{
+	width:770px;
+	margin-left:auto;
+	margin-right:auto;
+	}

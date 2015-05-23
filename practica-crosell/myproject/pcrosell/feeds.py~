@@ -1,0 +1,109 @@
+from django.contrib.syndication.views import Feed
+from models import Evento, EventosUsuario, Usuario
+from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404
+
+class EventoFeed(Feed):
+    title = "Eventos del usuario RSS"
+    description = "Descripicion de los eventos de un usuario"
+    link = "/marty"
+    pubDate = "13/05/2015"
+    
+    def get_object(self, request, nombre):
+        self.nombre1 = Usuario.objects.get(nombre = nombre)
+    
+    def items(self):
+
+        return EventosUsuario.objects.filter(usuario=self.nombre1)
+        
+    def item_title(self, item):
+        return item.evento.titulo
+        
+    def item_description (self, item):
+        return item.evento.descripcion
+        
+    def item_link(self, item):
+        return item.evento.url
+        
+    def item_category(self, item):
+        return item.evento.tipo
+        
+    def item_guid (self, item):
+        return str(item.evento.identif)
+               
+    def item_pubdate(self, item):
+        return item.evento.fechahora
+        
+    def item_author_name(self, item):
+        return '%s' % (item.evento.titulo)
+        
+        
+class TodasFeed(Feed):
+    title = "Eventos RSS"
+    description = "Descripicion de los eventos"
+    link = "/marty"
+    pubDate = "13/05/2015"
+    
+    
+    def items(self):
+
+        return Evento.objects.all()
+        
+    def item_title(self, item):
+        return item.titulo
+        
+    def item_description (self, item):
+        return item.descripcion
+        
+    def item_link(self, item):
+        return item.url
+        
+    def item_category(self, item):
+        return item.tipo
+        
+    def item_guid (self, item):
+        return str(item.identif)
+               
+    def item_pubdate(self, item):
+        return item.fechahora
+        
+    def item_author_name(self, item):
+        return '%s' % (item.titulo)
+        
+class PrinFeed(Feed):
+    title = "RSS de la pagina principal"
+    description = "Canal RSS de las diez actividades mas proximas en el tiempo"
+    link = "/marty"
+    pubDate = "13/05/2015"
+    
+
+    
+    def items(self):
+        import datetime
+        fecha_act = datetime.datetime.now()
+        lista = Evento.objects.order_by('fechahora')
+        lista_ev = Evento.objects.order_by('fechahora').filter(fechahora__gte = fecha_act)[:10]
+        return lista_ev
+        
+    def item_title(self, item):
+        return item.titulo
+        
+    def item_description (self, item):
+        return item.descripcion
+        
+    def item_link(self, item):
+        return item.url
+        
+    def item_category(self, item):
+        return item.tipo
+        
+    def item_guid (self, item):
+        return str(item.identif)
+               
+    def item_pubdate(self, item):
+        return item.fechahora
+        
+    def item_author_name(self, item):
+        return '%s' % (item.titulo)        
+
+        
